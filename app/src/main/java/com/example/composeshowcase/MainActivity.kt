@@ -9,6 +9,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import com.example.composeshowcase.components.BookList
+import com.example.composeshowcase.extensions.toUidModel
+import com.example.composeshowcase.models.BookListItemUI
 import com.example.composeshowcase.models.NetworkResult
 import com.example.composeshowcase.network.RemoteDataSource
 import com.example.composeshowcase.network.RemoteDateSource
@@ -24,23 +27,25 @@ class MainActivity : ComponentActivity() {
         RemoteDateSource(RemoteDataSource.bookService)
     )
 
+    private val books: MutableList<BookListItemUI> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
             fooRepo.allBooks().also {
                 println(it)
+                it.map { it.toUidModel() }.also {
+                    books.addAll(it)
+                    setContent {
+                        ComposeShowcaseTheme {
+                            BookList(books)
+                        }
+                    }
+                }
                 if (it.isNotEmpty()) {
                     fooRepo.book(it[0].id).also {
                         println(it)
                     }
-                }
-            }
-        }
-        setContent {
-            ComposeShowcaseTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
                 }
             }
         }

@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.composeshowcase.models.NetworkResult
 import com.example.composeshowcase.network.RemoteDataSource
 import com.example.composeshowcase.network.RemoteDateSource
+import com.example.composeshowcase.repository.BookRepository
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -19,21 +20,18 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
-    private val fooRemoteDataSource = RemoteDateSource(
-        api = RemoteDataSource.bookService
+    private val fooRepo = BookRepository(
+        RemoteDateSource(RemoteDataSource.bookService)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
-            fooRemoteDataSource.bookList().also {
+            fooRepo.allBooks().also {
                 println(it)
-                when(it) {
-                    is NetworkResult.Error -> println("fek")
-                    is NetworkResult.Success -> {
-                        fooRemoteDataSource.bookDetail(it.data[0].id).also {
-                            println(it)
-                        }
+                if (it.isNotEmpty()) {
+                    fooRepo.book(it[0].id).also {
+                        println(it)
                     }
                 }
             }

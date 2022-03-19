@@ -4,6 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 // TODO can be more generic to replace with other 3rd party lib
+//  also rename
 object RemoteDataSource {
 
     val retrofit: Retrofit by lazy {

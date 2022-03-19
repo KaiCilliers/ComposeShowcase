@@ -1,7 +1,7 @@
 package com.example.composeshowcase.network
 
 import com.example.composeshowcase.models.BookDetailResponse
-import com.example.composeshowcase.models.BookListResponse
+import com.example.composeshowcase.models.BookListItemResponse
 import com.example.composeshowcase.models.NetworkResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,7 @@ class RemoteDateSource(
     private val api: BookServiceContract,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : RemoteDataSourceContract {
-    override suspend fun bookList(): NetworkResult<BookListResponse> {
+    override suspend fun bookList(): NetworkResult<List<BookListItemResponse>> {
         return safeApiCall { api.bookList() }
     }
 

@@ -5,6 +5,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -15,16 +17,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.composeshowcase.models.BookListItemUI
+import com.example.composeshowcase.presentation.BookListViewModel
+import com.example.composeshowcase.presentation.BooksState
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
 @Composable
-fun BookList(books: List<BookListItemUI>) {
+fun BookList(vm: BookListViewModel) {
+    val state by vm.state
+    BookListScaffold(booksState = state)
+}
+
+@Composable
+private fun BookListScaffold(booksState: BooksState) {
    Scaffold {
-       LazyColumn {
-           items(books) {
-               BookListItem(it)
-           }
-       }
+        when (booksState) {
+            is BooksState.Error -> { /*TODO handle error state*/ }
+            BooksState.Loading -> { /*TODO handle loading state*/ }
+            is BooksState.Success -> {
+                LazyColumn {
+                    items(booksState.data) {
+                        BookListItem(it)
+                    }
+                }
+            }
+        }
    }
 }
 
@@ -110,7 +126,7 @@ fun MoveListPreview() {
            repeat(20) {
                list.add(item)
            }
-           BookList(list)
+           BookListScaffold(BooksState.success(list))
        }
     }
 }

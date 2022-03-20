@@ -1,4 +1,4 @@
-package com.example.composeshowcase.common
+package com.example.composeshowcase.features.booklist
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -6,25 +6,31 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.composeshowcase.features.booklist.BookListItemUI
-import com.example.composeshowcase.features.booklist.BooksState
-import com.example.composeshowcase.features.booklist.BookListViewModelContract
+import com.example.composeshowcase.common.ErrorContent
+import com.example.composeshowcase.common.LoadingContent
+import com.example.composeshowcase.common.MyAppBar
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
+/**
+ * Represent the home screen view stateful
+ */
 @Composable
-fun BookListScreen(
+fun HomeScreen(
     viewModel: BookListViewModelContract,
     showDetailScreen: (Int) -> Unit = {}
 ) {
     val state by viewModel.booksState
-    BookListScreen(
+    HomeScreen(
         booksState = state,
         itemOnClick = { showDetailScreen(it) }
     )
 }
 
+/**
+ * Represent the home screen view stateless
+ */
 @Composable
-private fun BookListScreen(
+private fun HomeScreen(
     booksState: BooksState,
     itemOnClick: (Int) -> Unit = {}
 ) {
@@ -67,7 +73,7 @@ private fun MoveListContentPreview() {
             repeat(20) {
                 list.add(item)
             }
-            BookListScreen(BooksState.success(list))
+            HomeScreen(BooksState.success(list))
         }
     }
 }
@@ -76,6 +82,6 @@ private fun MoveListContentPreview() {
 @Composable
 private fun MovieListErrorPreview() {
     ComposeShowcaseTheme {
-        BookListScreen(booksState = BooksState.error("We had a problem"))
+        HomeScreen(booksState = BooksState.error("We had a problem"))
     }
 }

@@ -3,6 +3,9 @@ package com.example.composeshowcase.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * Contains logic to make network calls
+ */
 object Network {
 
     private val retrofit: Retrofit by lazy {

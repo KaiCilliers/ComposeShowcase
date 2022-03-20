@@ -1,5 +1,8 @@
 package com.example.composeshowcase.network.models
 
+/**
+ * Network response model representing book detail
+ */
 data class BookDetailResponse(
     val author: String,
     val currencyCode: String,

@@ -1,5 +1,8 @@
 package com.example.composeshowcase.features.bookdetail
 
+/**
+ * UI model representing a book
+ */
 data class BookUI(
     val author: String,
     val currencyCode: String,

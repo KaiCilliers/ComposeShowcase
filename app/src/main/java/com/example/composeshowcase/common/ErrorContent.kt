@@ -13,6 +13,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
+/**
+ * Generic error screen state
+ */
 @Composable
 fun ErrorContent(additionalMessage: String? = null) {
     Box(

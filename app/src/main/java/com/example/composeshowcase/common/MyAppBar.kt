@@ -12,6 +12,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
+/**
+ * Appbar for the application
+ */
 @Composable
 fun MyAppBar() {
     TopAppBar{

@@ -1,5 +1,8 @@
 package com.example.composeshowcase.navigation
 
+/**
+ * Navigation destinations
+ */
 sealed class Screen(val route: String) {
     object Home: Screen("home")
     object Detail: Screen("detail/{bookId}") {

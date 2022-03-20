@@ -9,6 +9,9 @@ import com.example.composeshowcase.network.RemoteDataSourceContract
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
+/**
+ * Concrete implementation of [BookRepositoryContract]
+ */
 class BookRepository(
     private val remote: RemoteDataSourceContract
 ) : BookRepositoryContract {

@@ -7,6 +7,9 @@ import kotlinx.coroutines.withContext
 import retrofit2.Response
 import java.lang.Exception
 
+/**
+ * Concrete implementation of [SafeApiCallContract]
+ */
 class SafeApiCall(private val dispatcher: CoroutineDispatcher = Dispatchers.IO): SafeApiCallContract {
     override suspend fun <T> safeApiCall(request: suspend () -> Response<T>): NetworkResult<T> {
         return withContext(dispatcher) {

@@ -1,4 +1,4 @@
-package com.example.composeshowcase.common
+package com.example.composeshowcase.features.booklist
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,9 +17,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.composeshowcase.features.booklist.BookListItemUI
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
+/**
+ * Represent a single item in book list view
+ */
 @Composable
 fun BookListItem(
     book: BookListItemUI,
@@ -41,6 +43,9 @@ fun BookListItem(
     }
 }
 
+/**
+ * Book list item view content
+ */
 @Composable
 private fun BookListItemContent(book: BookListItemUI) {
     Row {

@@ -25,6 +25,9 @@ import com.example.composeshowcase.common.ErrorContent
 import com.example.composeshowcase.common.LoadingContent
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
+/**
+ * Book detail screen view stateful
+ */
 @Composable
 fun BookDetailScreen(
     viewModel: BookDetailViewModelContract,
@@ -36,12 +39,14 @@ fun BookDetailScreen(
     BookDetailScreen(state, navigateUp)
 }
 
+/**
+ * Book detail screen view stateless
+ */
 @Composable
 fun BookDetailScreen(
     state: BookDetailState,
     navigateUp: () -> Unit = {}
 ) {
-    var expanded by rememberSaveable { mutableStateOf(false) }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -67,55 +72,62 @@ fun BookDetailScreen(
                     LoadingContent()
                 }
                 is BookDetailState.Success -> {
-                    with(state) {
-                        Surface(
-                            color = MaterialTheme.colors.surface,
-                            modifier = Modifier.padding(4.dp)
-                        ) {
-                            Column(
-                                modifier = Modifier
-                                    .padding(12.dp)
-                            ) {
-                                Text(
-                                    text = data.title,
-                                    modifier = Modifier
-                                        .padding(4.dp)
-                                        .fillMaxWidth(),
-                                    textAlign = TextAlign.Center,
-                                    style = MaterialTheme.typography.h6
-                                )
-                                Text(
-                                    text = data.author,
-                                    modifier = Modifier
-                                        .padding(4.dp)
-                                        .fillMaxWidth(),
-                                    textAlign = TextAlign.Center,
-                                    style = MaterialTheme.typography.body1,
-                                    fontStyle = FontStyle.Italic
-                                )
-                                Text(
-                                    text = data.description,
-                                    modifier = Modifier
-                                        .clickable { expanded = !expanded }
-                                        .padding(4.dp)
-                                        .fillMaxWidth()
-                                        .animateContentSize(
-                                            animationSpec = tween(
-                                                durationMillis = 800
-                                            )
-                                        ),
-                                    maxLines = if (expanded) Int.MAX_VALUE else 4,
-                                    overflow = TextOverflow.Ellipsis,
-                                    textAlign = TextAlign.Center,
-                                    style = MaterialTheme.typography.body2
-                                )
-                            }
-                        }
-                    }
+                    BookDetailContent(state.data)
                 }
             }
         }
     )
+}
+
+/**
+ * Book detail screen main content
+ */
+@Composable
+fun BookDetailContent(data: BookUI) {
+    var expanded by rememberSaveable { mutableStateOf(false) }
+    Surface(
+        color = MaterialTheme.colors.surface,
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(12.dp)
+        ) {
+            Text(
+                text = data.title,
+                modifier = Modifier
+                    .padding(4.dp)
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.h6
+            )
+            Text(
+                text = data.author,
+                modifier = Modifier
+                    .padding(4.dp)
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.body1,
+                fontStyle = FontStyle.Italic
+            )
+            Text(
+                text = data.description,
+                modifier = Modifier
+                    .clickable { expanded = !expanded }
+                    .padding(4.dp)
+                    .fillMaxWidth()
+                    .animateContentSize(
+                        animationSpec = tween(
+                            durationMillis = 800
+                        )
+                    ),
+                maxLines = if (expanded) Int.MAX_VALUE else 4,
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.body2
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)

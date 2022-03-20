@@ -1,5 +1,8 @@
 package com.example.composeshowcase.features.booklist
 
+/**
+ * Represent the state of the home screen
+ */
 sealed class BooksState {
     object Loading : BooksState()
     data class Success(val data: List<BookListItemUI>) : BooksState()

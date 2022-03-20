@@ -4,6 +4,9 @@ import com.example.composeshowcase.network.models.BookDetailResponse
 import com.example.composeshowcase.network.models.BookListItemResponse
 import com.example.composeshowcase.network.models.NetworkResult
 
+/**
+ * Concrete implementation of [RemoteDataSourceContract]
+ */
 class RemoteDateSource(
     private val api: BookServiceContract,
     safeApiCall: SafeApiCallContract = SafeApiCall()

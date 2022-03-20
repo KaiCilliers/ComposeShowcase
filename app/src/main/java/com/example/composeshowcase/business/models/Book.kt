@@ -1,5 +1,8 @@
 package com.example.composeshowcase.business.models
 
+/**
+ * Business model representing a single Book
+ */
 data class Book(
     val author: String,
     val currencyCode: String,

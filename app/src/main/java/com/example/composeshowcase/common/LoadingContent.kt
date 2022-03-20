@@ -13,6 +13,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
+/**
+ * Generic loading screen state
+ */
 @Composable
 fun LoadingContent() {
     Box(

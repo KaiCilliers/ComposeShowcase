@@ -9,7 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.composeshowcase.common.BookListScreen
+import com.example.composeshowcase.features.booklist.HomeScreen
 import com.example.composeshowcase.features.bookdetail.BookDetailScreen
 import com.example.composeshowcase.features.bookdetail.BookDetailViewModel
 import com.example.composeshowcase.features.bookdetail.BookDetailViewModelContract
@@ -52,7 +52,7 @@ fun NavigationComponent(
         startDestination = Screen.Home.route
     ) {
         composable(Screen.Home.route) {
-            BookListScreen(
+            HomeScreen(
                 viewModel = vm,
                 showDetailScreen = {
                     navController.navigate(Screen.Detail.createRoute(it))

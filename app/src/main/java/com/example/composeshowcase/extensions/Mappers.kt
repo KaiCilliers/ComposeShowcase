@@ -7,6 +7,9 @@ import com.example.composeshowcase.features.booklist.BookListItemUI
 import com.example.composeshowcase.network.models.BookDetailResponse
 import com.example.composeshowcase.network.models.BookListItemResponse
 
+/**
+ * Extension to map [BookListItemResponse] to [BookListItem]
+ */
 fun BookListItemResponse.toBusinessModel() = BookListItem(
     author = author,
     currencyCode = currencyCode,
@@ -16,6 +19,9 @@ fun BookListItemResponse.toBusinessModel() = BookListItem(
     title = title
 )
 
+/**
+ * Extension to map [BookDetailResponse] to [Book]
+ */
 fun BookDetailResponse.toBusinessModel() = Book(
     author = author,
     currencyCode = currencyCode,
@@ -26,6 +32,9 @@ fun BookDetailResponse.toBusinessModel() = Book(
     title = title
 )
 
+/**
+ * Extension to map [BookListItem] to [BookListItemUI]
+ */
 fun BookListItem.toUidModel() = BookListItemUI(
     author = author,
     currencyCode = currencyCode,
@@ -35,6 +44,9 @@ fun BookListItem.toUidModel() = BookListItemUI(
     title = title
 )
 
+/**
+ * Extension to map [Book] to [BookUI]
+ */
 fun Book.toUiModel() = BookUI(
     author = author,
     currencyCode = currencyCode,

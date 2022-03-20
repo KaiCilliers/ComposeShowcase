@@ -30,8 +30,8 @@ import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
  */
 @Composable
 fun BookDetailScreen(
-    viewModel: BookDetailViewModelContract,
     navigateUp: () -> Unit = {},
+    viewModel: BookDetailViewModel,
     bookId: Int
 ) {
     val state by viewModel.bookState
@@ -66,7 +66,11 @@ fun BookDetailScreen(
         content = {
             when (state) {
                 is BookDetailState.Error -> {
-                    ErrorContent(state.exception.message)
+                    ErrorContent {
+                        Button(onClick = { navigateUp() }) {
+                            Text(text = "Back to safety")
+                        }        
+                    }
                 }
                 BookDetailState.Loading -> {
                     LoadingContent()

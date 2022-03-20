@@ -27,12 +27,14 @@ class BookListViewModel : ViewModel(), BookListViewModelContract {
         fetchBookList()
     }
 
-    private fun fetchBookList() = viewModelScope.launch {
-        booksUseCase().collect { resource ->
-            booksState.value = when(resource) {
-                is Resource.Success -> BooksState.success(resource.data.map { it.toUidModel() })
-                is Resource.Error -> BooksState.error(resource.exception.message.orEmpty())
-                Resource.Loading -> BooksState.loading()
+    override fun fetchBookList() {
+        viewModelScope.launch {
+            booksUseCase().collect { resource ->
+                booksState.value = when(resource) {
+                    is Resource.Success -> BooksState.success(resource.data.map { it.toUidModel() })
+                    is Resource.Error -> BooksState.error(resource.exception.message.orEmpty())
+                    Resource.Loading -> BooksState.loading()
+                }
             }
         }
     }

@@ -17,12 +17,14 @@ import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 @Composable
 fun HomeScreen(
     viewModel: BookListViewModelContract,
-    showDetailScreen: (Int) -> Unit = {}
+    showDetailScreen: (Int) -> Unit = {},
+    retryAction: () -> Unit = {}
 ) {
     val state by viewModel.booksState
     HomeScreen(
         booksState = state,
-        itemOnClick = { showDetailScreen(it) }
+        itemOnClick = { showDetailScreen(it) },
+        retryAction = retryAction
     )
 }
 
@@ -32,7 +34,8 @@ fun HomeScreen(
 @Composable
 private fun HomeScreen(
     booksState: BooksState,
-    itemOnClick: (Int) -> Unit = {}
+    itemOnClick: (Int) -> Unit = {},
+    retryAction: () -> Unit = {}
 ) {
     Scaffold(
         topBar = { MyAppBar() },
@@ -40,7 +43,11 @@ private fun HomeScreen(
     ) {
         when (booksState) {
             is BooksState.Error -> {
-                ErrorContent(booksState.exception.message)
+                ErrorContent {
+                    Button(onClick = { retryAction() }) {
+                        Text(text = "Retry")
+                    }
+                }
             }
             BooksState.Loading -> {
                 LoadingContent()

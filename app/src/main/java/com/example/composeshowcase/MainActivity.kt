@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,7 +13,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.composeshowcase.features.booklist.HomeScreen
 import com.example.composeshowcase.features.bookdetail.BookDetailScreen
 import com.example.composeshowcase.features.bookdetail.BookDetailViewModel
-import com.example.composeshowcase.features.bookdetail.BookDetailViewModelContract
 import com.example.composeshowcase.features.booklist.BookListItemUI
 import com.example.composeshowcase.navigation.Screen
 import com.example.composeshowcase.features.booklist.BookListViewModel
@@ -22,7 +22,6 @@ import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 class MainActivity : ComponentActivity() {
 
     private val viewModel: BookListViewModelContract by lazy { ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(BookListViewModel::class.java) }
-    private val viewModelDetail: BookDetailViewModelContract by lazy { ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(BookDetailViewModel::class.java) }
 
     private val books: MutableList<BookListItemUI> = mutableListOf()
 
@@ -33,8 +32,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavigationComponent(
                     navController = navController,
-                    vm = viewModel,
-                    vmDetail = viewModelDetail
+                    vm = viewModel
                 )
             }
         }
@@ -44,8 +42,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NavigationComponent(
     navController: NavHostController,
-    vm: BookListViewModelContract,
-    vmDetail: BookDetailViewModelContract
+    vm: BookListViewModelContract
 ) {
     NavHost(
         navController = navController,
@@ -56,18 +53,20 @@ fun NavigationComponent(
                 viewModel = vm,
                 showDetailScreen = {
                     navController.navigate(Screen.Detail.createRoute(it))
-                }
+                },
+                retryAction = { vm.fetchBookList() }
             )
         }
         composable(Screen.Detail.route) { navBackStackEntry ->
+            val viewModel: BookDetailViewModel = viewModel()
             val bookId = navBackStackEntry.arguments?.getString("bookId")
             bookId?.let {
                 println("book what is got $it")
-                vmDetail.fetchBookDetail(bookId.toInt())
+                viewModel.fetchBookDetail(bookId.toInt())
                 BookDetailScreen(
-                    viewModel = vmDetail,
                     navigateUp = { navController.popBackStack() },
-                    bookId = it.toInt()
+                    bookId = it.toInt(),
+                    viewModel = viewModel
                 )
             }
         }

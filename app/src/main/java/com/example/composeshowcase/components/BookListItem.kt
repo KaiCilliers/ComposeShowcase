@@ -1,5 +1,6 @@
 package com.example.composeshowcase.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,16 +22,20 @@ import com.example.composeshowcase.models.BookListItemUI
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
 @Composable
-fun BookListItem(book: BookListItemUI) {
-    Surface {
+fun BookListItem(
+    book: BookListItemUI,
+    itemOnClick: (Int) -> Unit = {}
+) {
+    Surface{
         Card(
             backgroundColor = MaterialTheme.colors.secondary,
             modifier = Modifier
+                .clickable { itemOnClick(book.id) }
                 .fillMaxWidth()
                 .padding(10.dp)
                 .height(80.dp),
             elevation = 10.dp,
-            shape = CutCornerShape(topEnd = 20.dp)
+            shape = CutCornerShape(topEnd = 20.dp),
         ) {
             BookListItemContent(book)
         }

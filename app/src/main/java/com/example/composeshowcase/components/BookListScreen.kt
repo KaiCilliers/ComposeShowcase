@@ -1,32 +1,39 @@
 package com.example.composeshowcase.components
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.composeshowcase.models.BookListItemUI
 import com.example.composeshowcase.presentation.BookListViewModel
-import com.example.composeshowcase.presentation.BooksState
+import com.example.composeshowcase.models.BooksState
+import com.example.composeshowcase.navigation.Screen
+import com.example.composeshowcase.presentation.BookListViewModelContract
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
 @Composable
-fun BookListScreen(viewModel: BookListViewModel) {
+fun BookListScreen(
+    viewModel: BookListViewModelContract,
+    navController: NavHostController
+) {
     val state by viewModel.booksState
-    BookListScreen(booksState = state)
+    BookListScreen(
+        booksState = state,
+        itemOnClick = {
+            println("bookID origin is $it")
+            navController.navigate(Screen.Detail.createRoute(it))
+        }
+    )
 }
 
 @Composable
-private fun BookListScreen(booksState: BooksState) {
+private fun BookListScreen(
+    booksState: BooksState,
+    itemOnClick: (Int) -> Unit = {}
+) {
     Scaffold(
         topBar = { MyAppBar() },
         backgroundColor = MaterialTheme.colors.surface
@@ -35,14 +42,14 @@ private fun BookListScreen(booksState: BooksState) {
             is BooksState.Error -> {
                 ErrorContent(booksState.exception.message)
             }
-            BooksState.Loading -> { 
+            BooksState.Loading -> {
                 LoadingContent()
             }
             is BooksState.Success -> {
                 LazyColumn {
                     val multiList = mutableListOf<BookListItemUI>().apply { addAll(booksState.data); addAll(booksState.data); addAll(booksState.data) }
-                    items(multiList) {
-                        BookListItem(it)
+                    items(multiList) { item ->
+                        BookListItem(item, itemOnClick = { itemOnClick(it) })
                     }
                 }
             }

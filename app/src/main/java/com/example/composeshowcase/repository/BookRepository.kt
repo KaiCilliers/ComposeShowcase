@@ -27,12 +27,12 @@ class BookRepository(
     override suspend fun book(id: Int): Flow<Resource<Book>> {
         return flow {
             emit(Resource.loading())
-            with(remote.bookDetail(id)) {
+            emit(with(remote.bookDetail(id)) {
                when(this) {
                    is NetworkResult.Error -> Resource.error(this.exception?.message ?: this.msg.orEmpty())
                    is NetworkResult.Success -> Resource.success(data.toBusinessModel())
                }
-            }
+            })
         }
     }
 }

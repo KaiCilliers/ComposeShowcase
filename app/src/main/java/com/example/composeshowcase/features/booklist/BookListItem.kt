@@ -89,7 +89,7 @@ private fun BookListItemContent(book: BookListItemUI) {
                 modifier = Modifier.align(Alignment.TopEnd)
             )
             Text(
-                text = "${book.currencyCode} ${book.price}",
+                text = "${book.currencySymbol} ${book.price}",
                 modifier = Modifier.align(Alignment.BottomEnd)
             )
         }
@@ -102,7 +102,7 @@ private fun BookListItemPreview() {
     ComposeShowcaseTheme {
         BookListItem(book = BookListItemUI(
             author = "Kevin Felker",
-            currencyCode = "EUR",
+            currencySymbol = "EUR",
             id = 888,
             isbn = "13114141n1241lkn141",
             price = 333,

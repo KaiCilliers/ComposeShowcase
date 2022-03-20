@@ -6,6 +6,7 @@ import com.example.composeshowcase.features.bookdetail.BookUI
 import com.example.composeshowcase.features.booklist.BookListItemUI
 import com.example.composeshowcase.network.models.BookDetailResponse
 import com.example.composeshowcase.network.models.BookListItemResponse
+import java.util.*
 
 /**
  * Extension to map [BookListItemResponse] to [BookListItem]
@@ -35,14 +36,17 @@ fun BookDetailResponse.toBusinessModel() = Book(
 /**
  * Extension to map [BookListItem] to [BookListItemUI]
  */
-fun BookListItem.toUidModel() = BookListItemUI(
-    author = author,
-    currencyCode = currencyCode,
-    id = id,
-    isbn = isbn,
-    price = price,
-    title = title
-)
+fun BookListItem.toUidModel(): BookListItemUI {
+    val currencySymbol = Currency.getInstance(currencyCode).getSymbol(Locale.getDefault())
+    return BookListItemUI(
+        author = author,
+        currencySymbol = currencySymbol,
+        id = id,
+        isbn = isbn,
+        price = price,
+        title = title
+    )
+}
 
 /**
  * Extension to map [Book] to [BookUI]
@@ -56,3 +60,18 @@ fun Book.toUiModel() = BookUI(
     price = price,
     title = title
 )
+
+/**
+ * Extension to map [BookDetailResponse] to [Book]
+ */
+fun BookDetailResponse.toBusinessModel2() {
+    Book(
+        author = author,
+        currencyCode = currencyCode,
+        description = description,
+        id = id,
+        isbn = isbn,
+        price = price,
+        title = title
+    )
+}

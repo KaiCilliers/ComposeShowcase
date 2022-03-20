@@ -17,15 +17,12 @@ import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 @Composable
 fun BookListScreen(
     viewModel: BookListViewModelContract,
-    navController: NavHostController
+    showDetailScreen: (Int) -> Unit = {}
 ) {
     val state by viewModel.booksState
     BookListScreen(
         booksState = state,
-        itemOnClick = {
-            println("bookID origin is $it")
-            navController.navigate(Screen.Detail.createRoute(it))
-        }
+        itemOnClick = { showDetailScreen(it) }
     )
 }
 
@@ -75,14 +72,6 @@ private fun MoveListContentPreview() {
             }
             BookListScreen(BooksState.success(list))
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun MovieListLoadingPreview() {
-    ComposeShowcaseTheme {
-        BookListScreen(booksState = BooksState.loading())
     }
 }
 

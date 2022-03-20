@@ -54,7 +54,9 @@ fun NavigationComponent(
         composable(Screen.Home.route) {
             BookListScreen(
                 viewModel = vm,
-                navController = navController
+                showDetailScreen = {
+                    navController.navigate(Screen.Detail.createRoute(it))
+                }
             )
         }
         composable(Screen.Detail.route) { navBackStackEntry ->
@@ -64,7 +66,7 @@ fun NavigationComponent(
                 vmDetail.fetchBookDetail(bookId.toInt())
                 BookDetailScreen(
                     viewModel = vmDetail,
-                    navController = navController,
+                    navigateUp = { navController.popBackStack() },
                     bookId = it.toInt()
                 )
             }

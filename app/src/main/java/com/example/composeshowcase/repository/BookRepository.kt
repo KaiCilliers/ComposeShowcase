@@ -1,10 +1,10 @@
 package com.example.composeshowcase.repository
 
-import com.example.composeshowcase.models.Resource
+import com.example.composeshowcase.business.models.Resource
 import com.example.composeshowcase.extensions.toBusinessModel
-import com.example.composeshowcase.models.Book
-import com.example.composeshowcase.models.BookListItem
-import com.example.composeshowcase.models.NetworkResult
+import com.example.composeshowcase.business.models.Book
+import com.example.composeshowcase.business.models.BookListItem
+import com.example.composeshowcase.network.models.NetworkResult
 import com.example.composeshowcase.network.RemoteDataSourceContract
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

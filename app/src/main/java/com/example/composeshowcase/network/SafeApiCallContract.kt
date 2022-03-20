@@ -1,6 +1,6 @@
 package com.example.composeshowcase.network
 
-import com.example.composeshowcase.models.NetworkResult
+import com.example.composeshowcase.network.models.NetworkResult
 import retrofit2.Response
 
 interface SafeApiCallContract {

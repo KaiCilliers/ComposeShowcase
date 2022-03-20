@@ -1,6 +1,6 @@
-package com.example.composeshowcase.models
+package com.example.composeshowcase.features.booklist
 
-data class BookListItemResponse(
+data class BookListItemUI(
     val author: String,
     val currencyCode: String,
     val id: Int,

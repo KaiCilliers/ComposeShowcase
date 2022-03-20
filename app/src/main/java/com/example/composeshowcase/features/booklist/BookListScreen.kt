@@ -1,4 +1,4 @@
-package com.example.composeshowcase.components
+package com.example.composeshowcase.common
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -6,12 +6,9 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
-import com.example.composeshowcase.models.BookListItemUI
-import com.example.composeshowcase.presentation.BookListViewModel
-import com.example.composeshowcase.models.BooksState
-import com.example.composeshowcase.navigation.Screen
-import com.example.composeshowcase.presentation.BookListViewModelContract
+import com.example.composeshowcase.features.booklist.BookListItemUI
+import com.example.composeshowcase.features.booklist.BooksState
+import com.example.composeshowcase.features.booklist.BookListViewModelContract
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
 @Composable

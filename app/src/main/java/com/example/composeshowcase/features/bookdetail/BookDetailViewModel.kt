@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.composeshowcase.business.FetchBookDetailUseCase
 import com.example.composeshowcase.extensions.toUiModel
-import com.example.composeshowcase.models.Resource
+import com.example.composeshowcase.business.models.Resource
 import com.example.composeshowcase.network.Network
 import com.example.composeshowcase.network.RemoteDateSource
 import com.example.composeshowcase.repository.BookRepository

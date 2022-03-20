@@ -1,8 +1,8 @@
 package com.example.composeshowcase.network
 
-import com.example.composeshowcase.models.BookDetailResponse
-import com.example.composeshowcase.models.BookListItemResponse
-import com.example.composeshowcase.models.NetworkResult
+import com.example.composeshowcase.network.models.BookDetailResponse
+import com.example.composeshowcase.network.models.BookListItemResponse
+import com.example.composeshowcase.network.models.NetworkResult
 
 // todo write docs
 interface RemoteDataSourceContract {

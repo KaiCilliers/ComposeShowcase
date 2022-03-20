@@ -1,8 +1,8 @@
 package com.example.composeshowcase.repository
 
-import com.example.composeshowcase.models.Resource
-import com.example.composeshowcase.models.Book
-import com.example.composeshowcase.models.BookListItem
+import com.example.composeshowcase.business.models.Resource
+import com.example.composeshowcase.business.models.Book
+import com.example.composeshowcase.business.models.BookListItem
 import kotlinx.coroutines.flow.Flow
 
 interface BookRepositoryContract {

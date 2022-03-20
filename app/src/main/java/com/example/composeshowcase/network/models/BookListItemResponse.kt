@@ -1,9 +1,8 @@
-package com.example.composeshowcase.models
+package com.example.composeshowcase.network.models
 
-data class BookUI(
+data class BookListItemResponse(
     val author: String,
     val currencyCode: String,
-    val description: String,
     val id: Int,
     val isbn: String,
     val price: Int,

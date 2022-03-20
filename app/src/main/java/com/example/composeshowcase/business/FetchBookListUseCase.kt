@@ -1,7 +1,7 @@
 package com.example.composeshowcase.business
 
-import com.example.composeshowcase.models.BookListItem
-import com.example.composeshowcase.models.Resource
+import com.example.composeshowcase.business.models.BookListItem
+import com.example.composeshowcase.business.models.Resource
 import com.example.composeshowcase.repository.BookRepositoryContract
 import kotlinx.coroutines.flow.Flow
 

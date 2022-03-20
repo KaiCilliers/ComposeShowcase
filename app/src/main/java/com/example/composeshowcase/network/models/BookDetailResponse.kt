@@ -1,6 +1,6 @@
-package com.example.composeshowcase.models
+package com.example.composeshowcase.network.models
 
-data class Book(
+data class BookDetailResponse(
     val author: String,
     val currencyCode: String,
     val description: String,

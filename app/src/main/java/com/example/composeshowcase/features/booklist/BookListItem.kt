@@ -1,9 +1,8 @@
-package com.example.composeshowcase.components
+package com.example.composeshowcase.common
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -18,7 +17,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.composeshowcase.models.BookListItemUI
+import com.example.composeshowcase.features.booklist.BookListItemUI
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
 @Composable
@@ -103,6 +102,7 @@ private fun BookListItemPreview() {
             isbn = "13114141n1241lkn141",
             price = 333,
             title = "Android Application for Dummies"
-        ))
+        )
+        )
     }
 }

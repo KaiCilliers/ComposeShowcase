@@ -1,7 +1,7 @@
 package com.example.composeshowcase.network
 
-import com.example.composeshowcase.models.BookDetailResponse
-import com.example.composeshowcase.models.BookListItemResponse
+import com.example.composeshowcase.network.models.BookDetailResponse
+import com.example.composeshowcase.network.models.BookListItemResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

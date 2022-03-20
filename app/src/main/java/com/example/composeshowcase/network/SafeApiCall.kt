@@ -1,6 +1,6 @@
 package com.example.composeshowcase.network
 
-import com.example.composeshowcase.models.NetworkResult
+import com.example.composeshowcase.network.models.NetworkResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

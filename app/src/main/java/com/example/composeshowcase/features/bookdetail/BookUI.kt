@@ -1,8 +1,9 @@
-package com.example.composeshowcase.models
+package com.example.composeshowcase.features.bookdetail
 
-data class BookListItemUI(
+data class BookUI(
     val author: String,
     val currencyCode: String,
+    val description: String,
     val id: Int,
     val isbn: String,
     val price: Int,

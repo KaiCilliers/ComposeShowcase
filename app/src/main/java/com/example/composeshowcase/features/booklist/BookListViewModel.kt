@@ -1,12 +1,11 @@
-package com.example.composeshowcase.presentation
+package com.example.composeshowcase.features.booklist
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.*
 import com.example.composeshowcase.business.FetchBookListUseCase
-import com.example.composeshowcase.models.Resource
+import com.example.composeshowcase.business.models.Resource
 import com.example.composeshowcase.extensions.toUidModel
-import com.example.composeshowcase.models.BooksState
 import com.example.composeshowcase.network.Network
 import com.example.composeshowcase.network.RemoteDateSource
 import com.example.composeshowcase.repository.BookRepository

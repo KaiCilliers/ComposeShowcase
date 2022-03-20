@@ -21,9 +21,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.composeshowcase.components.ErrorContent
-import com.example.composeshowcase.components.LoadingContent
-import com.example.composeshowcase.models.BookUI
+import com.example.composeshowcase.common.ErrorContent
+import com.example.composeshowcase.common.LoadingContent
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
 @Composable

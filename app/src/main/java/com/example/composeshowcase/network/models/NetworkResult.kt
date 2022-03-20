@@ -1,4 +1,4 @@
-package com.example.composeshowcase.models
+package com.example.composeshowcase.network.models
 
 import java.lang.Exception
 

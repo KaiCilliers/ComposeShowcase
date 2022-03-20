@@ -1,4 +1,4 @@
-package com.example.composeshowcase.models
+package com.example.composeshowcase.features.booklist
 
 sealed class BooksState {
     object Loading : BooksState()

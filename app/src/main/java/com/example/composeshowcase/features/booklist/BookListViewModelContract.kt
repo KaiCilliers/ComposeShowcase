@@ -1,7 +1,6 @@
-package com.example.composeshowcase.presentation
+package com.example.composeshowcase.features.booklist
 
 import androidx.compose.runtime.State
-import com.example.composeshowcase.models.BooksState
 
 interface BookListViewModelContract {
     val booksState: State<BooksState>

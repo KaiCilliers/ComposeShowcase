@@ -1,4 +1,4 @@
-package com.example.composeshowcase.components
+package com.example.composeshowcase.common
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme

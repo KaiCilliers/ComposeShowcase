@@ -9,14 +9,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.composeshowcase.components.BookListScreen
+import com.example.composeshowcase.common.BookListScreen
 import com.example.composeshowcase.features.bookdetail.BookDetailScreen
 import com.example.composeshowcase.features.bookdetail.BookDetailViewModel
 import com.example.composeshowcase.features.bookdetail.BookDetailViewModelContract
-import com.example.composeshowcase.models.BookListItemUI
+import com.example.composeshowcase.features.booklist.BookListItemUI
 import com.example.composeshowcase.navigation.Screen
-import com.example.composeshowcase.presentation.BookListViewModel
-import com.example.composeshowcase.presentation.BookListViewModelContract
+import com.example.composeshowcase.features.booklist.BookListViewModel
+import com.example.composeshowcase.features.booklist.BookListViewModelContract
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
 class MainActivity : ComponentActivity() {

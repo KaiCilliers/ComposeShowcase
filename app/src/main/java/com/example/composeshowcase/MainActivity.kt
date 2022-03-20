@@ -23,8 +23,6 @@ class MainActivity : ComponentActivity() {
 
     private val viewModel: BookListViewModelContract by lazy { ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(BookListViewModel::class.java) }
 
-    private val books: MutableList<BookListItemUI> = mutableListOf()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

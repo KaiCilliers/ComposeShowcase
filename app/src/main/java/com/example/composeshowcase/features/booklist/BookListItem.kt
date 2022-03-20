@@ -3,16 +3,15 @@ package com.example.composeshowcase.features.booklist
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,7 +28,7 @@ fun BookListItem(
 ) {
     Surface{
         Card(
-            backgroundColor = MaterialTheme.colors.secondary,
+            backgroundColor = MaterialTheme.colors.surface,
             modifier = Modifier
                 .clickable { itemOnClick(book.id) }
                 .fillMaxWidth()
@@ -53,44 +52,34 @@ private fun BookListItemContent(book: BookListItemUI) {
             modifier = Modifier.weight(1f)
         ) {
             Text(
-                text = "by ${book.author}",
-                style = MaterialTheme.typography.caption.copy(
-                    fontSize = 10.sp
-                ),
-                color = Color.Gray
-            )
-            Text(
                 text = book.title,
                 maxLines = 2,
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .wrapContentHeight()
+                    .padding(8.dp),
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.body1.copy(
                     fontWeight = FontWeight.ExtraBold,
-                    fontSize = 20.sp
+                    fontSize = 16.sp
                 )
             )
-            Text(
-                text = "ISBN - ${book.isbn}",
-                fontStyle = FontStyle.Italic,
-                style = MaterialTheme.typography.body2.copy(
-                    fontWeight = FontWeight.Light,
-                    fontSize = 10.sp
+            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+                Text(
+                    modifier = Modifier.padding(8.dp),
+                    text = "by ${book.author}",
+                    style = MaterialTheme.typography.caption.copy(
+                        fontSize = 10.sp
+                    )
                 )
-            )
+            }
         }
         Box(
             modifier = Modifier.fillMaxHeight()
         ) {
             Text(
-                text = "Book id - ${book.id}",
-                style = MaterialTheme.typography.caption.copy(
-                    fontSize = 8.sp
-                ),
-                modifier = Modifier.align(Alignment.TopEnd)
-            )
-            Text(
                 text = "${book.currencySymbol} ${book.price}",
-                modifier = Modifier.align(Alignment.BottomEnd)
+                modifier = Modifier.align(Alignment.BottomEnd).padding(8.dp)
             )
         }
     }
@@ -102,7 +91,7 @@ private fun BookListItemPreview() {
     ComposeShowcaseTheme {
         BookListItem(book = BookListItemUI(
             author = "Kevin Felker",
-            currencySymbol = "EUR",
+            currencySymbol = "€",
             id = 888,
             isbn = "13114141n1241lkn141",
             price = 333,

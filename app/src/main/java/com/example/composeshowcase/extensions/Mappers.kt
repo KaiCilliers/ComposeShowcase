@@ -51,15 +51,18 @@ fun BookListItem.toUidModel(): BookListItemUI {
 /**
  * Extension to map [Book] to [BookUI]
  */
-fun Book.toUiModel() = BookUI(
-    author = author,
-    currencyCode = currencyCode,
-    description = description,
-    id = id,
-    isbn = isbn,
-    price = price,
-    title = title
-)
+fun Book.toUiModel(): BookUI {
+    val currencySymbol = Currency.getInstance(currencyCode).getSymbol(Locale.getDefault())
+    return BookUI(
+        author = author,
+        currencySymbol = currencySymbol,
+        description = description,
+        id = id,
+        isbn = isbn,
+        price = price,
+        title = title
+    )
+}
 
 /**
  * Extension to map [BookDetailResponse] to [Book]

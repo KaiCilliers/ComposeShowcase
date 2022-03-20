@@ -1,6 +1,6 @@
 package com.example.composeshowcase.repository
 
-import com.example.composeshowcase.business.Resource
+import com.example.composeshowcase.models.Resource
 import com.example.composeshowcase.extensions.toBusinessModel
 import com.example.composeshowcase.models.Book
 import com.example.composeshowcase.models.BookListItem
@@ -24,11 +24,14 @@ class BookRepository(
         }
     }
 
-    override suspend fun book(id: Int): Book? {
-        return with(remote.bookDetail(id)) {
-            when (this) {
-               is NetworkResult.Error -> return@with null
-                is NetworkResult.Success -> return@with data.toBusinessModel()
+    override suspend fun book(id: Int): Flow<Resource<Book>> {
+        return flow {
+            emit(Resource.loading())
+            with(remote.bookDetail(id)) {
+               when(this) {
+                   is NetworkResult.Error -> Resource.error(this.exception?.message ?: this.msg.orEmpty())
+                   is NetworkResult.Success -> Resource.success(data.toBusinessModel())
+               }
             }
         }
     }

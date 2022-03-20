@@ -7,7 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
-import com.example.composeshowcase.components.BookList
+import com.example.composeshowcase.components.BookListScreen
 import com.example.composeshowcase.models.BookListItemUI
 import com.example.composeshowcase.presentation.BookListViewModel
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeShowcaseTheme {
-                BookList(vm = viewModel)
+                BookListScreen(viewModel = viewModel)
             }
         }
     }

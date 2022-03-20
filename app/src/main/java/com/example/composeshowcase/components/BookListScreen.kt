@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,49 +20,23 @@ import com.example.composeshowcase.presentation.BooksState
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
 @Composable
-fun BookList(vm: BookListViewModel) {
-    val state by vm.state
-    BookListScaffold(booksState = state)
+fun BookListScreen(viewModel: BookListViewModel) {
+    val state by viewModel.booksState
+    BookListScreen(booksState = state)
 }
 
 @Composable
-private fun BookListScaffold(booksState: BooksState) {
+private fun BookListScreen(booksState: BooksState) {
     Scaffold(
-        topBar = {
-            // todo move to separate file MyAppBar
-            TopAppBar{
-                Text(
-                    text = "Book List",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.body1.copy(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 24.sp
-                    ),
-                )
-            }
-        },
-        backgroundColor = MaterialTheme.colors.background
+        topBar = { MyAppBar() },
+        backgroundColor = MaterialTheme.colors.surface
     ) {
         when (booksState) {
             is BooksState.Error -> {
-                Box {
-                    // todo this box could be included in loading and error components to fill its container
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        ErrorContent(booksState.exception.message)
-                    }
-                }
+                ErrorContent(booksState.exception.message)
             }
             BooksState.Loading -> { 
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    LoadingContent()
-                }
+                LoadingContent()
             }
             is BooksState.Success -> {
                 LazyColumn {
@@ -93,7 +66,7 @@ private fun MoveListContentPreview() {
             repeat(20) {
                 list.add(item)
             }
-            BookListScaffold(BooksState.success(list))
+            BookListScreen(BooksState.success(list))
         }
     }
 }
@@ -102,6 +75,14 @@ private fun MoveListContentPreview() {
 @Composable
 private fun MovieListLoadingPreview() {
     ComposeShowcaseTheme {
-        BookListScaffold(booksState = BooksState.loading())
+        BookListScreen(booksState = BooksState.loading())
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun MovieListErrorPreview() {
+    ComposeShowcaseTheme {
+        BookListScreen(booksState = BooksState.error("We had a problem"))
     }
 }

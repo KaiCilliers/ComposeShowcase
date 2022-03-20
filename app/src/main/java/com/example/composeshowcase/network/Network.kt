@@ -3,11 +3,9 @@ package com.example.composeshowcase.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO can be more generic to replace with other 3rd party lib
-//  also rename
-object RemoteDataSource {
+object Network {
 
-    val retrofit: Retrofit by lazy {
+    private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("http://tpbookserver.herokuapp.com")
             .addConverterFactory(GsonConverterFactory.create())

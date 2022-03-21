@@ -23,10 +23,13 @@ import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
  */
 @Composable
 fun BookListItem(
+    modifier: Modifier = Modifier,
     book: BookListItemUI,
     itemOnClick: (Int) -> Unit = {}
 ) {
-    Surface{
+    Surface(
+        modifier = modifier
+    ){
         Card(
             backgroundColor = MaterialTheme.colors.surface,
             modifier = Modifier

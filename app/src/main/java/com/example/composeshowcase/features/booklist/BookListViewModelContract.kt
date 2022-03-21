@@ -1,6 +1,8 @@
 package com.example.composeshowcase.features.booklist
 
 import androidx.compose.runtime.State
+import com.example.composeshowcase.business.models.Sort
+import com.example.composeshowcase.business.models.SortDirection
 
 interface BookListViewModelContract {
     /**
@@ -11,5 +13,12 @@ interface BookListViewModelContract {
     /**
      * Fetch list of books
      */
-    fun fetchBookList()
+    fun fetchBookList(
+        sort: Sort = Sort.Name,
+        sortDirection: SortDirection = SortDirection.Descending
+    )
+    fun reorderList(
+        sort: Sort = Sort.Name,
+        sortDirection: SortDirection = SortDirection.Descending
+    )
 }

@@ -3,6 +3,7 @@ package com.example.composeshowcase
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -13,12 +14,12 @@ import androidx.navigation.compose.rememberNavController
 import com.example.composeshowcase.features.booklist.HomeScreen
 import com.example.composeshowcase.features.bookdetail.BookDetailScreen
 import com.example.composeshowcase.features.bookdetail.BookDetailViewModel
-import com.example.composeshowcase.features.booklist.BookListItemUI
 import com.example.composeshowcase.navigation.Screen
 import com.example.composeshowcase.features.booklist.BookListViewModel
 import com.example.composeshowcase.features.booklist.BookListViewModelContract
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
+@ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
 
     private val viewModel: BookListViewModelContract by lazy { ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(BookListViewModel::class.java) }
@@ -37,6 +38,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@ExperimentalFoundationApi
 @Composable
 fun NavigationComponent(
     navController: NavHostController,
@@ -52,7 +54,10 @@ fun NavigationComponent(
                 showDetailScreen = {
                     navController.navigate(Screen.Detail.createRoute(it))
                 },
-                retryAction = { vm.fetchBookList() }
+                retryAction = { vm.fetchBookList() },
+                sortAction =  {sort, sortDirection ->
+                    vm.reorderList(sort, sortDirection)
+                }
             )
         }
         composable(Screen.Detail.route) { navBackStackEntry ->

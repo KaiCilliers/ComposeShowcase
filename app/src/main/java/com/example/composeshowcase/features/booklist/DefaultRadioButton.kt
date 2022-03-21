@@ -16,6 +16,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
+/**
+ * Simple radio button
+ */
 @Composable
 fun DefaultRadioButton(
     text: String,

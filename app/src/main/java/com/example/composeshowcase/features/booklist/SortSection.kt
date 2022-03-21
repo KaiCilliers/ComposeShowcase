@@ -10,6 +10,9 @@ import com.example.composeshowcase.business.models.Sort
 import com.example.composeshowcase.business.models.SortDirection
 import com.example.composeshowcase.ui.theme.ComposeShowcaseTheme
 
+/**
+ * Component that contains sort options for list
+ */
 @Composable
 fun SortSection(
     modifier: Modifier = Modifier,
